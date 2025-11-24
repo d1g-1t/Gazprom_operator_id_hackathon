@@ -1,0 +1,68 @@
+.diagram_user {
+    display: flex;
+}
+
+.diagram_user__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 104px;
+    width: 104px;
+    background-color: rgba(54, 207, 201, 1);
+    border-radius: 50%;
+    border: 1px solid rgba(54, 207, 201, 1);
+    text-decoration: none;
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.diagram_user__link_one {
+    background-color: rgba(135, 232, 222, 1);
+    border: 1px solid rgba(135, 232, 222, 1)
+}
+
+.diagram_user__link_two {
+    background-color: rgba(255, 173, 210, 1);
+    border: 1px solid rgba(255, 173, 210, 1)
+}
+
+.diagram_user__link_three {
+    background-color: rgba(210, 173, 247, 1);
+    border: 1px solid rgba(210, 173, 247, 1)
+}
+
+.diagram_user__link_four {
+    background-color: rgba(255, 187, 151, 1);
+    border: 1px solid rgba(255, 187, 151, 1)
+}
+
+.diagram_user__avatar {
+    height: 44px;
+    width: 44px;
+    border-radius: 50%;
+    margin: 0;
+    padding: 0;
+}
+
+.diagram_user__name {
+    font-family: 'Roboto', 'Arial', sans-serif;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    color: rgba(38, 38, 38, 1);
+    margin: 4px 0 4px 0;
+    padding: 0;
+}
+
+.diagram_user__surname {
+    font-family: 'Roboto', 'Arial', sans-serif;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    color: rgba(38, 38, 38, 1);
+    margin: 0;
+    padding: 0;
+}

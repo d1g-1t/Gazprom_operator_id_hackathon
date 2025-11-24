@@ -1,0 +1,14 @@
+.links {}
+
+.links__container {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.links__item_icon {
+    cursor: pointer;
+    margin: 0 8px 0 0;
+    padding: 0;
+}

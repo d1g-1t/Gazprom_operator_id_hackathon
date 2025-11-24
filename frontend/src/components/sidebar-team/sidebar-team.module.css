@@ -1,0 +1,30 @@
+.sidebar_team {}
+
+.sidebar_team__container {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 24px;
+}
+
+.sidebar_team__point {
+    font-family: 'Roboto', 'Arial', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    color: rgba(31, 31, 31, 1);
+    margin: 16px 0 16px 0;
+    padding: 0;
+}
+
+.sidebar_team__text {
+    font-family: 'Roboto', 'Arial', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    color: rgba(31, 31, 31, 1);
+    margin: 24px 0 24px 0;
+    padding: 0;
+}
+
+.sidebar_team__lead_container {}

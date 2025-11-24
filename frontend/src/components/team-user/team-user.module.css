@@ -1,0 +1,85 @@
+.diagram__user {
+    display: flex;
+}
+
+.diagram__user_link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 168px;
+    width: 168px;
+    background-color: rgba(211, 173, 247, 1);
+    border-radius: 50%;
+    border: 1px solid rgba(211, 173, 247, 1);
+    text-decoration: none;
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.diagram__lead_user_link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 272px;
+    width: 272px;
+    background-color: rgba(144, 46, 209, 1);
+    border-radius: 50%;
+    border: 1px solid rgba(144, 46, 209, 1);
+    text-decoration: none;
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.diagram__user_avatar {
+    height: 44px;
+    width: 44px;
+    border-radius: 50%;
+    margin: 0;
+    padding: 0;
+}
+
+.diagram__lead_user_avatar {
+    height: 84px;
+    width: 84px;
+    border-radius: 50%;
+    margin: 0;
+    padding: 0;
+}
+
+.diagram__user_name {
+    font-family: 'Roboto', 'Arial', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    color: rgba(38, 38, 38, 1);
+    margin: 4px 0 4px 0;
+    padding: 0;
+}
+
+.diagram__user_position {
+    font-family: 'Roboto', 'Arial', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    color: rgba(140, 140, 140, 1);
+    margin: 0;
+    padding: 0;
+    width: 120px;
+}
+
+.diagram__lead_user_position {
+    font-family: 'Roboto', 'Arial', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    color: rgba(140, 140, 140, 1);
+    margin: 0;
+    padding: 0;
+    width: 180px;
+}

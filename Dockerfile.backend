@@ -1,0 +1,53 @@
+FROM python:3.11-slim as builder
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
+
+WORKDIR /app
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        gcc \
+        libpq-dev \
+        build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt .
+RUN pip wheel --no-cache-dir --wheel-dir /app/wheels -r requirements.txt \
+    && pip wheel --no-cache-dir --wheel-dir /app/wheels gunicorn
+
+FROM python:3.11-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1
+
+RUN groupadd -r app && useradd -r -g app app
+
+WORKDIR /app
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        libpq5 \
+        postgresql-client \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=builder /app/wheels /wheels
+RUN pip install --no-index --find-links=/wheels /wheels/* \
+    && rm -rf /wheels
+
+COPY backend/ /app/
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+RUN chown -R app:app /app
+
+USER app
+
+ENV DJANGO_SETTINGS_MODULE=gazpromorgchart.settings
+
+EXPOSE 8000
+
+ENTRYPOINT ["/entrypoint.sh"]

@@ -1,35 +1,68 @@
-version: '3.3'
 services:
   db:
-    image: postgres:13
+    image: postgres:15-alpine
     environment:
-      POSTGRES_DB: ${DATABASE_NAME}
-      POSTGRES_USER: ${DATABASE_USER}
-      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME:-gazprom}
+      POSTGRES_USER: ${DATABASE_USER:-gazprom}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-gazprom}
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-  web:
-    build: .
-    command: >
-      sh -c "
-      python gazpromorgchart/manage.py makemigrations &&
-      python gazpromorgchart/manage.py migrate &&
-      echo \"from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('admin', 'admin@admin.ru', 'admin') if not User.objects.filter(username='admin').exists() else None\" | python gazpromorgchart/manage.py shell &&
-      python gazpromorgchart/manage.py runserver 0.0.0.0:8000
-      "
-    volumes:
-      - .:/app
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gazprom"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+    networks:
+      - appnet
+    shm_size: 128mb
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    networks:
+      - appnet
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+      cache_from:
+        - gazprom_operator_id_hackathon_backend-backend:latest
+    image: gazprom_operator_id_hackathon_backend-backend:latest
+    env_file:
+      - .env
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_PORT=5432
     ports:
       - "8000:8000"
     depends_on:
-      - db
-    environment:
-      SECRET_KEY: ${SECRET_KEY}
-      DEBUG: ${DEBUG}
-      DATABASE_NAME: ${DATABASE_NAME}
-      DATABASE_USER: ${DATABASE_USER}
-      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
-      DATABASE_HOST: ${DATABASE_HOST}
-      DATABASE_PORT: ${DATABASE_PORT}
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    volumes:
+      - media_data:/home/workshop/media
+    networks:
+      - appnet
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+      cache_from:
+        - gazprom_operator_id_hackathon_backend-frontend:latest
+    image: gazprom_operator_id_hackathon_backend-frontend:latest
+    ports:
+      - "3000:80"
+    networks:
+      - appnet
+
 volumes:
-  postgres_data:
+  db_data:
+  media_data:
+
+networks:
+  appnet:
+    driver: bridge

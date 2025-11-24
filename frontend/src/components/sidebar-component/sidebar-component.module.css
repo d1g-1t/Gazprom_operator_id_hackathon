@@ -1,0 +1,37 @@
+.sidebar_component {}
+
+.sidebar_component__container {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 24px;
+}
+
+.sidebar_component__point {
+    font-family: 'Roboto', 'Arial', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    color: rgba(31, 31, 31, 1);
+    margin: 24px 0 24px 0;
+    padding: 0;
+}
+
+.sidebar_component__text {
+    font-family: 'Roboto', 'Arial', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    color: rgba(31, 31, 31, 1);
+    margin: 24px 0 24px 0;
+    padding: 0;
+}
+
+.sidebar_component__lead_container {
+    display: flex;
+}
+
+.sidebar_component__button {
+    margin: 24px 0 24px 0;
+    padding: 0;
+}

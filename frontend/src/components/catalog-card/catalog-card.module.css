@@ -1,0 +1,98 @@
+.catalog_card {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 24px;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 1);
+    max-height: 424px;
+    max-width: 334px;
+    box-sizing: border-box;
+}
+
+.catalog_card__container {
+    display: flex;
+    align-items: flex-start;
+    margin: 0 0 16px 0;
+    padding: 0;
+}
+
+.catalog_card__user_avatar {
+    height: 64px;
+    width: 64px;
+    border-radius: 50%;
+}
+
+.catalog_card__user_container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 10px 0 10px;
+    padding: 0;
+}
+
+.catalog_card__user_name {
+    font-family: 'Roboto', 'Arial', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    color: rgba(31, 31, 31, 1);
+    margin: 0 0 4px 0;
+    padding: 0;
+}
+
+.catalog_card__user_timezone {
+    font-family: 'Roboto', 'Arial', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    color: rgba(140, 140, 140, 1);
+    margin: 10px 0 0 0;
+    padding: 0;
+}
+
+.catalog_card__user_employment {
+    font-family: 'Roboto', 'Arial', sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    color: rgba(140, 140, 140, 1);
+    margin: 4px 0 10px 0;
+    padding: 0;
+}
+
+.catalog_card__user_links {
+    display: flex;
+    justify-content: space-between;
+}
+
+.catalog_card__link {
+    height: 32px;
+    width: 150px;
+    margin: 0;
+    padding: 0;
+}
+
+.catalog_card__divider {
+    border: 1px solid rgba(217, 217, 217, 1);
+}
+
+.catalog_card__user_position_label {
+    font-family: 'Roboto', 'Arial', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    color: rgba(140, 140, 140, 1);
+    margin: 0 0 6px 0;
+    padding: 0;
+}
+
+.catalog_card__user_position {
+    font-family: 'Roboto', 'Arial', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    color: rgba(31, 31, 31, 1);
+    margin: 0;
+    padding: 0;
+}
