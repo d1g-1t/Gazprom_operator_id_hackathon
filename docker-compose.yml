@@ -27,12 +27,15 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.backend
-      cache_from:
-        - gazprom_operator_id_hackathon_backend-backend:latest
     image: gazprom_operator_id_hackathon_backend-backend:latest
-    env_file:
-      - .env
     environment:
+      - SECRET_KEY=${SECRET_KEY:-django-insecure-hackathon-demo-key-change-in-production-12345}
+      - DEBUG=${DEBUG:-True}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS:-localhost,127.0.0.1,0.0.0.0}
+      - CSRF_TRUSTED_ORIGINS=${CSRF_TRUSTED_ORIGINS:-http://localhost:3000,http://localhost:8000,http://127.0.0.1:3000,http://127.0.0.1:8000}
+      - DATABASE_NAME=${DATABASE_NAME:-gazprom}
+      - DATABASE_USER=${DATABASE_USER:-gazprom}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD:-gazprom}
       - DATABASE_HOST=db
       - DATABASE_PORT=5432
     ports:
@@ -51,8 +54,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.frontend
-      cache_from:
-        - gazprom_operator_id_hackathon_backend-frontend:latest
     image: gazprom_operator_id_hackathon_backend-frontend:latest
     ports:
       - "3000:80"

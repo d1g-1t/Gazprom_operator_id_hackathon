@@ -4,6 +4,11 @@ COMPOSE=docker compose
 
 setup:
 	@echo "🚀 Starting Gazprom Operator ID Hackathon project..."
+	@if [ ! -f .env ]; then \
+		echo "📝 Creating .env file from .env.example..."; \
+		cp .env.example .env; \
+		echo "✅ .env file created!"; \
+	fi
 	@echo "📦 Building Docker images..."
 	$(COMPOSE) build --parallel
 	@echo "✅ Build completed!"
